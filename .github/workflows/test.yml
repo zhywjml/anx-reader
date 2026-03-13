@@ -1,12 +1,17 @@
-name: Test Windows Build
+name: Test CI
 
 on:
   workflow_dispatch
 
 jobs:
-  call-build:
-    uses: ./.github/workflows/build-windows.yml
-    with:
-      version: test
-      flutter_version: 3.24.0
-    secrets: inherit
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print system info
+        run: |
+          echo "CI is working"
+          systeminfo
