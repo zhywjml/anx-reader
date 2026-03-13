@@ -1,7 +1,7 @@
-name: Test Windows Dual Build
+name: Windows Build
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   build:
@@ -9,6 +9,7 @@ jobs:
     runs-on: windows-latest
 
     strategy:
+      fail-fast: false
       matrix:
         arch: [x64, arm64]
 
@@ -22,14 +23,20 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Initialize Flutter
+      - name: Flutter Doctor
         run: flutter doctor -v
+        shell: cmd
 
       - name: Enable Windows
         run: flutter config --enable-windows-desktop
+        shell: cmd
 
       - name: Build Windows
-        run: flutter build windows --debug --target-platform windows-${{ matrix.arch }}
+        run: flutter build windows --release --target-platform windows-${{ matrix.arch }}
+        shell: cmd
 
-      - name: Show output
-        run: dir build/windows
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-${{ matrix.arch }}
+          path: build/windows/${{ matrix.arch }}/runner/Release
