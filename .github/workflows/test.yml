@@ -1,0 +1,12 @@
+name: Test Windows Build
+
+on:
+  workflow_dispatch
+
+jobs:
+  call-build:
+    uses: ./.github/workflows/build-windows.yml
+    with:
+      version: test
+      flutter_version: 3.24.0
+    secrets: inherit
