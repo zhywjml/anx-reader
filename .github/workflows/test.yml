@@ -20,6 +20,10 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          cache: true
+
+      - name: Initialize Flutter
+        run: flutter doctor -v
 
       - name: Enable Windows
         run: flutter config --enable-windows-desktop
