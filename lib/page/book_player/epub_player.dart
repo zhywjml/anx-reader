@@ -88,8 +88,6 @@ class EpubPlayerState extends ConsumerState<EpubPlayer>
   int chapterCurrentPage = 0;
   int chapterTotalPages = 0;
   OverlayEntry? contextMenuEntry;
-  AnimationController? _animationController;
-  Animation<double>? _animation;
   bool showHistory = false;
   bool canGoBack = false;
   bool canGoForward = false;
@@ -938,17 +936,7 @@ class EpubPlayerState extends ConsumerState<EpubPlayer>
         // removeOverlay();
       },
     );
-    if (Prefs().openBookAnimation) {
-      _animationController = AnimationController(
-        duration: const Duration(milliseconds: 600),
-        vsync: this,
-      );
-      _animation =
-          Tween<double>(begin: 1.0, end: 0.0).animate(_animationController!);
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _animationController!.forward();
-      });
-    }
+    // Remove the overlay animation - now handled by Hero flightShuttleBuilder
     super.initState();
   }
 
@@ -971,7 +959,6 @@ class EpubPlayerState extends ConsumerState<EpubPlayer>
   @override
   void dispose() {
     _scrollDebounceTimer?.cancel();
-    _animationController?.dispose();
     saveReadingProgress();
     removeOverlay();
     super.dispose();
@@ -1247,13 +1234,6 @@ class EpubPlayerState extends ConsumerState<EpubPlayer>
             buildWebviewWithIOSWorkaround(context, url, initialCfi),
             readingInfoWidget(),
             if (showHistory) _buildHistoryCapsule(),
-            if (Prefs().openBookAnimation)
-              SizedBox.expand(
-                  child: IgnorePointer(
-                ignoring: true,
-                child: FadeTransition(
-                    opacity: _animation!, child: BookCover(book: widget.book)),
-              )),
           ],
         ),
       ),

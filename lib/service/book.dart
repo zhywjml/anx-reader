@@ -465,17 +465,35 @@ Future<void> pushToReadingPage(
   final chapterContentBridge = ref.read(chapterContentBridgeProvider.notifier);
   final tocSearch = ref.read(tocSearchProvider.notifier);
 
+  // Determine heroTag based on animation setting
+  final effectiveHeroTag = Prefs().openBookAnimation
+      ? (heroTag ?? book.coverFullPath)
+      : (heroTag ?? 'preventHeroWhenStart');
+
+  // Use BookOpenPageRoute for book opening animation, SimplePageRoute otherwise
+  final route = Prefs().openBookAnimation
+      ? BookOpenPageRoute(
+          page: ReadingPage(
+            key: readingPageKey,
+            book: book,
+            cfi: cfi,
+            initialThemes: initialThemes,
+            heroTag: effectiveHeroTag,
+          ),
+        )
+      : SimplePageRoute(
+          page: ReadingPage(
+            key: readingPageKey,
+            book: book,
+            cfi: cfi,
+            initialThemes: initialThemes,
+            heroTag: effectiveHeroTag,
+          ),
+        );
+
   await Navigator.push(
     navigatorKey.currentContext!,
-    SimplePageRoute(
-      page: ReadingPage(
-        key: readingPageKey,
-        book: book,
-        cfi: cfi,
-        initialThemes: initialThemes,
-        heroTag: heroTag,
-      ),
-    ),
+    route,
   ).then((_) {
     AnxLog.info('ReadingPage: poped: ${book.title}');
     currentReading.finish();

@@ -39,3 +39,31 @@ class SimplePageRoute<T> extends PageRouteBuilder<T> {
           reverseTransitionDuration: const Duration(milliseconds: 200),
         );
 }
+
+/// A page route designed for opening books with Hero animation.
+/// Provides a minimal transition to let Hero animation take center stage.
+class BookOpenPageRoute<T> extends PageRouteBuilder<T> {
+  final Widget page;
+
+  BookOpenPageRoute({
+    required this.page,
+    super.settings,
+  }) : super(
+          pageBuilder: (context, animation, secondaryAnimation) => page,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Minimal fade to complement Hero animation
+            final fadeAnimation = CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeOutCubic,
+              reverseCurve: Curves.easeInCubic,
+            );
+
+            return FadeTransition(
+              opacity: fadeAnimation,
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 350),
+          reverseTransitionDuration: const Duration(milliseconds: 300),
+        );
+}
