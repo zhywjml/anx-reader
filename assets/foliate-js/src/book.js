@@ -351,11 +351,6 @@ const setSelectionHandler = (view, doc, index) => {
       globalThis.originalScrollLeft = container.scrollLeft;
       // Reset the flag when a new selection starts
       globalThis.selectionPageTurned = false;
-
-      // Register pointerup listener once per selection operation
-      doc.addEventListener('pointerup', () => {
-        globalThis.selectionPageTurned = false;
-      }, { once: true });
     });
 
 
