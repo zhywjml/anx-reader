@@ -342,10 +342,15 @@ const setSelectionHandler = (view, doc, index) => {
     // go to the next page when selecting to the end of a page
     // this makes it possible to select across pages
 
+    // Flag to prevent multiple page turns during a single selection
+    globalThis.selectionPageTurned = false;
+
     doc.addEventListener('selectstart', () => {
       const container = view.shadowRoot.querySelector('foliate-paginator').shadowRoot.querySelector("#container");
       if (!container) return;
       globalThis.originalScrollLeft = container.scrollLeft;
+      // Reset the flag when a new selection starts
+      globalThis.selectionPageTurned = false;
     });
 
 
@@ -364,8 +369,11 @@ const setSelectionHandler = (view, doc, index) => {
 
       const container = view.shadowRoot.querySelector('foliate-paginator').shadowRoot.querySelector("#container");
 
-      if (selRange.compareBoundaryPoints(Range.END_TO_END, lastLocation.range) >= 0) {
+      // Only turn page once per selection operation
+      if (!globalThis.selectionPageTurned && selRange.compareBoundaryPoints(Range.END_TO_END, lastLocation.range) >= 0) {
         globalThis.pageDebounceTimer = setTimeout(async () => {
+          if (globalThis.selectionPageTurned) return;
+          globalThis.selectionPageTurned = true;
           await view.next();
           globalThis.originalScrollLeft = container.scrollLeft;
           globalThis.pageDebounceTimer = null;
@@ -386,6 +394,8 @@ const setSelectionHandler = (view, doc, index) => {
 
       doc.addEventListener('pointerup', () => {
         container.removeEventListener('scroll', preventScroll);
+        // Reset the flag when selection ends
+        globalThis.selectionPageTurned = false;
       }, { once: true });
     })
 
