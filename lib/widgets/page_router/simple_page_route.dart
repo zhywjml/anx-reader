@@ -51,17 +51,8 @@ class BookOpenPageRoute<T> extends PageRouteBuilder<T> {
   }) : super(
           pageBuilder: (context, animation, secondaryAnimation) => page,
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            // Minimal fade to complement Hero animation
-            final fadeAnimation = CurvedAnimation(
-              parent: animation,
-              curve: Curves.easeOutCubic,
-              reverseCurve: Curves.easeInCubic,
-            );
-
-            return FadeTransition(
-              opacity: fadeAnimation,
-              child: child,
-            );
+            // No additional transition - let Hero animation handle everything
+            return child;
           },
           transitionDuration: const Duration(milliseconds: 350),
           reverseTransitionDuration: const Duration(milliseconds: 300),
