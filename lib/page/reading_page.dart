@@ -30,6 +30,7 @@ import 'package:anx_reader/widgets/reading_page/tts_fab.dart';
 import 'package:anx_reader/widgets/reading_page/tts_widget.dart';
 import 'package:anx_reader/widgets/reading_page/style_widget.dart';
 import 'package:anx_reader/widgets/reading_page/toc_widget.dart';
+import 'package:anx_reader/widgets/bookshelf/book_cover.dart';
 import 'package:anx_reader/widgets/common/axis_flex.dart';
 import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:flutter/cupertino.dart';
@@ -811,6 +812,12 @@ class ReadingPageState extends ConsumerState<ReadingPage>
       body: Hero(
         tag: widget.heroTag ??
             (Prefs().openBookAnimation ? _book.coverFullPath : heroTag),
+        flightShuttleBuilder: (flightContext, animation, flightDirection,
+            fromHeroContext, toHeroContext) {
+          // Show book cover during the flight animation
+          // The cover expands from bookshelf position to full screen
+          return BookCover(book: _book);
+        },
         child: FittedBox(
           fit: BoxFit.scaleDown,
           child: SizedBox(

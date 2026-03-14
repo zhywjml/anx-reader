@@ -63,13 +63,7 @@ class BookItem extends ConsumerWidget {
           Expanded(
             child: Hero(
               tag: book.coverFullPath,
-              child: Row(
-                  children: [
-                    Expanded(
-                      child: BookCover(book: book),
-                    ),
-                  ],
-                ),
+              child: BookCover(book: book),
             ),
           ),
           const SizedBox(height: 5),

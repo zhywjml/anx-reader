@@ -367,21 +367,26 @@ const setSelectionHandler = (view, doc, index) => {
       const selRange = getSelectionRange(doc.getSelection())
       if (!selRange) return
 
+      // Clear any pending debounce timer
       if (globalThis.pageDebounceTimer) {
         clearTimeout(globalThis.pageDebounceTimer);
         globalThis.pageDebounceTimer = null;
       }
 
+      // If already turned page during this selection, do nothing
+      if (globalThis.selectionPageTurned) return;
+
       const container = view.shadowRoot.querySelector('foliate-paginator').shadowRoot.querySelector("#container");
 
-      // Only turn page once per selection operation
-      if (!globalThis.selectionPageTurned && selRange.compareBoundaryPoints(Range.END_TO_END, lastLocation.range) >= 0) {
+      // Check if selection reached the end of the page
+      if (selRange.compareBoundaryPoints(Range.END_TO_END, lastLocation.range) >= 0) {
+        // Set flag immediately to prevent multiple triggers during async operation
+        globalThis.selectionPageTurned = true;
+
         globalThis.pageDebounceTimer = setTimeout(async () => {
-          if (globalThis.selectionPageTurned) return;
-          globalThis.selectionPageTurned = true;
+          globalThis.pageDebounceTimer = null;
           await view.next();
           globalThis.originalScrollLeft = container.scrollLeft;
-          globalThis.pageDebounceTimer = null;
         }, 1000);
         return
       }
