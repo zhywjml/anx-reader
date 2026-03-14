@@ -22,6 +22,7 @@ import 'package:anx_reader/widgets/bookshelf/book_bottom_sheet.dart';
 import 'package:anx_reader/widgets/bookshelf/book_folder.dart';
 import 'package:anx_reader/widgets/bookshelf/sync_button.dart';
 import 'package:anx_reader/widgets/common/container/filled_container.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:anx_reader/widgets/common/tag_chip.dart';
 import 'package:anx_reader/widgets/hint/hint_banner.dart';
 import 'package:anx_reader/widgets/common/anx_segmented_button.dart';
@@ -535,8 +536,8 @@ class BookshelfPageState extends ConsumerState<BookshelfPage>
           child: InkWell(
             onTap: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const SearchPage(),
+                SimplePageRoute(
+                  page: const SearchPage(),
                 ),
               );
             },

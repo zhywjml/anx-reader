@@ -11,6 +11,7 @@ import 'package:anx_reader/widgets/common/container/filled_container.dart';
 import 'package:anx_reader/widgets/highlight_digit.dart';
 import 'package:anx_reader/widgets/icon_and_text.dart';
 import 'package:anx_reader/providers/book_notes.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -363,8 +364,8 @@ class _BookNotesPageState extends ConsumerState<BookNotesPage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                builder: (context) => BookDetail(book: book),
+              SimplePageRoute(
+                page: BookDetail(book: book),
               ),
             );
           }),

@@ -28,7 +28,7 @@ import 'package:anx_reader/utils/log/common.dart';
 import 'package:anx_reader/utils/toast/common.dart';
 import 'package:anx_reader/utils/webView/gererate_url.dart';
 import 'package:anx_reader/utils/webView/webview_console_message.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -445,8 +445,8 @@ Future<void> pushToReadingPage(
 
     if (!isFeatureAvailable) {
       Navigator.of(context).push(
-        CupertinoPageRoute(
-          builder: (context) => const IAPPage(),
+        SimplePageRoute(
+          page: const IAPPage(),
         ),
       );
       return;
@@ -467,8 +467,8 @@ Future<void> pushToReadingPage(
 
   await Navigator.push(
     navigatorKey.currentContext!,
-    CupertinoPageRoute(
-      builder: (c) => ReadingPage(
+    SimplePageRoute(
+      page: ReadingPage(
         key: readingPageKey,
         book: book,
         cfi: cfi,

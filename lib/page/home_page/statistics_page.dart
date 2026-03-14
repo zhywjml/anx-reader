@@ -16,6 +16,7 @@ import 'package:anx_reader/widgets/statistic/statistic_card.dart';
 import 'package:anx_reader/widgets/statistic/statistics_dashboard_title.dart';
 import 'package:anx_reader/widgets/statistic/statistics_dashboard.dart';
 import 'package:anx_reader/widgets/tips/statistic_tips.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -320,8 +321,9 @@ class BookStatisticItem extends StatelessWidget {
             onTap: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => BookDetail(book: snapshot.data!)));
+                  SimplePageRoute(
+                    page: BookDetail(book: snapshot.data!),
+                  ));
             },
             child: FilledContainer(
               margin: const EdgeInsets.only(bottom: 10),

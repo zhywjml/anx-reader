@@ -31,6 +31,7 @@ import 'package:anx_reader/widgets/reading_page/tts_widget.dart';
 import 'package:anx_reader/widgets/reading_page/style_widget.dart';
 import 'package:anx_reader/widgets/reading_page/toc_widget.dart';
 import 'package:anx_reader/widgets/common/axis_flex.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -735,8 +736,8 @@ class ReadingPageState extends ConsumerState<ReadingPage>
                       onPressed: () {
                         Navigator.push(
                           context,
-                          CupertinoPageRoute(
-                            builder: (context) => BookDetail(book: widget.book),
+                          SimplePageRoute(
+                            page: BookDetail(book: widget.book),
                           ),
                         );
                       },

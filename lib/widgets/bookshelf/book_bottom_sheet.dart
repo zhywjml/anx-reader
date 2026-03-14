@@ -20,6 +20,7 @@ import 'package:anx_reader/utils/toast/common.dart';
 import 'package:anx_reader/widgets/bookshelf/book_cover.dart';
 import 'package:anx_reader/widgets/delete_confirm.dart';
 import 'package:anx_reader/widgets/icon_and_text.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,8 +64,8 @@ class BookBottomSheet extends ConsumerWidget {
       Navigator.pop(context);
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) => BookDetail(book: book),
+        SimplePageRoute(
+          page: BookDetail(book: book),
         ),
       );
     }

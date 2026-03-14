@@ -8,6 +8,7 @@ import 'package:anx_reader/widgets/bookshelf/book_cover.dart';
 import 'package:anx_reader/widgets/common/container/filled_container.dart';
 import 'package:anx_reader/widgets/highlight_digit.dart';
 import 'package:anx_reader/widgets/tips/notes_tips.dart';
+import 'package:anx_reader/widgets/page_router/simple_page_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -158,12 +159,13 @@ class _NotesPageState extends ConsumerState<NotesPage> {
         if (isMobile) {
           Navigator.push(
             context,
-            MaterialPageRoute(
-                builder: (context) => BookNotesPage(
-                      book: book,
-                      numberOfNotes: numberOfNotes,
-                      isMobile: true,
-                    )),
+            SimplePageRoute(
+              page: BookNotesPage(
+                book: book,
+                numberOfNotes: numberOfNotes,
+                isMobile: true,
+              ),
+            ),
           );
         } else {
           ref
