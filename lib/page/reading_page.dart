@@ -679,7 +679,7 @@ class ReadingPageState extends ConsumerState<ReadingPage>
                   onVerticalDragUpdate: (details) {},
                   onVerticalDragEnd: (details) {},
                   child: Container(
-                    color: Colors.black.withAlpha(30),
+                    color: Theme.of(context).colorScheme.surface.withAlpha(200),
                   )),
             ),
             Column(

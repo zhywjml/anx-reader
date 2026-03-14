@@ -540,9 +540,12 @@ class BookshelfPageState extends ConsumerState<BookshelfPage>
                 ),
               );
             },
-            child: FilledContainer(
+            child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
-              color: Theme.of(context).colorScheme.surface.withAlpha(80),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(8),
+              ),
               child: Row(
                 children: [
                   const Icon(Icons.search, color: Colors.grey),
@@ -625,25 +628,10 @@ class BookshelfPageState extends ConsumerState<BookshelfPage>
       ],
     );
 
-    return Container(
-        decoration: Prefs().eInkMode
-            ? null
-            : BoxDecoration(
-                gradient: RadialGradient(
-                  tileMode: TileMode.clamp,
-                  center: Alignment.topRight,
-                  radius: 1,
-                  colors: [
-                    Theme.of(context).colorScheme.primary.withAlpha(5),
-                    Theme.of(context).scaffoldBackgroundColor,
-                  ],
-                ),
-              ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: appBar,
-          body: body,
-        ));
+    return Scaffold(
+      appBar: appBar,
+      body: body,
+    );
   }
 }
 

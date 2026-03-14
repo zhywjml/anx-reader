@@ -63,26 +63,13 @@ class BookItem extends ConsumerWidget {
           Expanded(
             child: Hero(
               tag: book.coverFullPath,
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    if (!Prefs().eInkMode)
-                      BoxShadow(
-                        color: Colors.grey.withAlpha(100),
-                        spreadRadius: 5,
-                        blurRadius: 10,
-                        offset: const Offset(0, 2),
-                      ),
-                  ],
-                ),
-                child: Row(
+              child: Row(
                   children: [
                     Expanded(
                       child: BookCover(book: book),
                     ),
                   ],
                 ),
-              ),
             ),
           ),
           const SizedBox(height: 5),

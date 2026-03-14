@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:anx_reader/dao/database.dart';
 import 'package:anx_reader/enums/sync_direction.dart';
 import 'package:anx_reader/enums/sync_trigger.dart';
@@ -23,7 +21,6 @@ import 'package:anx_reader/providers/iap.dart';
 import 'package:anx_reader/config/shared_preference_provider.dart';
 import 'package:anx_reader/utils/toast/common.dart';
 import 'package:anx_reader/widgets/ai/ai_chat_stream.dart';
-import 'package:anx_reader/widgets/common/container/filled_container.dart';
 import 'package:anx_reader/widgets/settings/about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
@@ -221,39 +218,27 @@ class _HomePageState extends ConsumerState<HomePage> {
               children: [
                 SafeArea(
                   bottom: false,
-                  child: FilledContainer(
-                    margin: const EdgeInsets.all(16),
-                    color: ElevationOverlay.applySurfaceTint(
-                      Theme.of(context).colorScheme.surface,
-                      Theme.of(context).colorScheme.primary,
-                      3,
-                    ),
-                    radius: 20,
-                    child: SafeArea(
-                      child: NavigationRail(
-                        leading: InkWell(
-                          onTap: () => openAboutDialog(),
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 2.0),
-                            child: Image.asset(
-                              width: 32,
-                              height: 32,
-                              'assets/icon/Anx-logo-tined.png',
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                          ),
+                  child: NavigationRail(
+                    leading: InkWell(
+                      onTap: () => openAboutDialog(),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 2.0),
+                        child: Image.asset(
+                          width: 32,
+                          height: 32,
+                          'assets/icon/Anx-logo-tined.png',
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
-                        groupAlignment: 1,
-                        extended: false,
-                        selectedIndex: currentIndex,
-                        onDestinationSelected: (int index) =>
-                            onBottomTap(index, true),
-                        destinations: railBarItems,
-                        labelType: NavigationRailLabelType.all,
-                        backgroundColor: Colors.transparent,
-                        // elevation: 0,
                       ),
                     ),
+                    groupAlignment: 1,
+                    extended: false,
+                    selectedIndex: currentIndex,
+                    onDestinationSelected: (int index) =>
+                        onBottomTap(index, true),
+                    destinations: railBarItems,
+                    labelType: NavigationRailLabelType.all,
+                    backgroundColor: Theme.of(context).colorScheme.surface,
                   ),
                 ),
                 Expanded(child: pages(currentIndex, constraints, null)),
@@ -280,37 +265,19 @@ class _HomePageState extends ConsumerState<HomePage> {
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(500),
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(32),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: Container(
-                    height: 64,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .surfaceContainer
-                          .withAlpha(123),
-                      borderRadius: BorderRadius.circular(32),
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.outline,
-                        width: 0.5,
-                      ),
-                    ),
-                    child: BottomNavigationBar(
-                      selectedFontSize: 12,
-                      enableFeedback: true,
-                      type: BottomNavigationBarType.fixed,
-                      landscapeLayout:
-                          BottomNavigationBarLandscapeLayout.linear,
-                      currentIndex: currentIndex,
-                      onTap: (int index) => onBottomTap(index, false),
-                      items: bottomBarItems,
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                      // height: 64,
-                    ),
-                  ),
+              child: Container(
+                height: 56,
+                color: Theme.of(context).colorScheme.surface,
+                child: BottomNavigationBar(
+                  selectedFontSize: 12,
+                  enableFeedback: true,
+                  type: BottomNavigationBarType.fixed,
+                  landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+                  currentIndex: currentIndex,
+                  onTap: (int index) => onBottomTap(index, false),
+                  items: bottomBarItems,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
+                  elevation: 0,
                 ),
               ),
             ),
