@@ -941,7 +941,7 @@ class AiChatStreamState extends ConsumerState<AiChatStream> {
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: isUser
-                    ? Theme.of(context).colorScheme.surfaceContainer
+                    ? Theme.of(context).colorScheme.primaryContainer
                     : Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.only(
                   topLeft: isUser ? const Radius.circular(12) : Radius.zero,
@@ -1140,9 +1140,9 @@ class _CollapsibleTextState extends State<_CollapsibleText> {
                       colors: [
                         Theme.of(context)
                             .colorScheme
-                            .surfaceContainer
+                            .surface
                             .withValues(alpha: 0),
-                        Theme.of(context).colorScheme.surfaceContainer,
+                        Theme.of(context).colorScheme.surface,
                       ],
                     ),
                   ),

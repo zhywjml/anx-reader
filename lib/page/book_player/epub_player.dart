@@ -1040,7 +1040,7 @@ class EpubPlayerState extends ConsumerState<EpubPlayer>
               decoration: BoxDecoration(
                 color: Theme.of(context)
                     .colorScheme
-                    .surfaceContainer
+                    .surface
                     .withAlpha(123),
                 borderRadius: BorderRadius.circular(32),
                 border: Border.all(

@@ -99,7 +99,7 @@ class _TtsFabState extends State<TtsFab> with SingleTickerProviderStateMixin {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: FilledContainer(
                         color:
-                            Theme.of(context).colorScheme.surfaceContainerHigh,
+                            Theme.of(context).colorScheme.surface,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 6.0, vertical: 4.0),

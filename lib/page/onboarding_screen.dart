@@ -59,7 +59,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       controlsPadding: const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
       dotsDecorator: DotsDecorator(
         size: const Size(10.0, 10.0),
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        color: Theme.of(context).colorScheme.surface,
         activeSize: const Size(22.0, 10.0),
         activeColor: Theme.of(context).colorScheme.primary,
         activeShape: const RoundedRectangleBorder(
@@ -451,7 +451,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 decoration: BoxDecoration(
                   color: Theme.of(context)
                       .colorScheme
-                      .surfaceContainerHighest
+                      .surface
                       .withAlpha(50),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
@@ -507,7 +507,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           decoration: BoxDecoration(
             color: Theme.of(context)
                 .colorScheme
-                .surfaceContainerHighest
+                .surface
                 .withAlpha(50),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(

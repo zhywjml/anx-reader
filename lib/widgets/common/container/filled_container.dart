@@ -47,7 +47,7 @@ class FilledContainer extends BaseRoundedContainer {
     BorderRadiusGeometry borderRadius,
   ) {
     final Color effectiveColor =
-        color ?? Theme.of(context).colorScheme.surfaceContainer;
+        color ?? Theme.of(context).colorScheme.surface;
 
     return buildShapeDecoration(
       color: effectiveColor,

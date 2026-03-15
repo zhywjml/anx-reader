@@ -40,7 +40,7 @@ abstract class StatisticsDashboardTileBase {
       width: double.infinity,
       height: double.infinity,
       radius: 16,
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Theme.of(context).colorScheme.surface,
       child: Stack(
         children: [
           Positioned(

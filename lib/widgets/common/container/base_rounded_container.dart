@@ -14,7 +14,7 @@ abstract class BaseRoundedContainer extends StatelessWidget {
     this.animationCurve = Curves.easeInOut,
   });
 
-  static const double _defaultRadius = 30;
+  static const double _defaultRadius = 12;
 
   final Widget child;
   final double? width;

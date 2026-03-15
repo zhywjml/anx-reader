@@ -45,30 +45,28 @@ ThemeData colorSchema(
           Brightness.light => ColorScheme.fromSeed(
               seedColor: seedColor,
               brightness: Brightness.light,
-              surfaceContainer: Color(0xFFFFFFFF),
               surface: lightGropedBackground,
             ),
           Brightness.dark => ColorScheme.fromSeed(
               seedColor: seedColor,
               brightness: Brightness.dark,
-              surfaceContainer: Color(0xFF2C2C2E),
               surface: darkGropedBackground,
             ),
         };
 
   ThemeData themeData = isEinkMode
       ? FlexThemeData.light(
-          useMaterial3: true,
+          useMaterial3: false,
           swapLegacyOnMaterial3: true,
           colorScheme: colorScheme)
       : switch (brightness) {
           Brightness.light => FlexThemeData.light(
-              useMaterial3: true,
+              useMaterial3: false,
               swapLegacyOnMaterial3: true,
               colorScheme: colorScheme,
             ),
           Brightness.dark => FlexThemeData.dark(
-              useMaterial3: true,
+              useMaterial3: false,
               swapLegacyOnMaterial3: true,
               darkIsTrueBlack: prefsNotifier.trueDarkMode,
               colorScheme: colorScheme,
@@ -86,6 +84,26 @@ ThemeData colorSchema(
           drawerTheme: DrawerThemeData()
               .copyWith(backgroundColor: gropedBackgroundColor),
           dialogTheme: DialogThemeData()
-              .copyWith(backgroundColor: gropedBackgroundColor))
+              .copyWith(backgroundColor: gropedBackgroundColor),
+          // Simplified button themes for cleaner M2-style appearance
+          filledButtonTheme: FilledButtonThemeData(
+            style: FilledButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              elevation: 0,
+            ),
+          ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+            ),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+            ),
+          ),
+          chipTheme: ChipThemeData(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+          ))
       .useSystemChineseFont(brightness);
 }

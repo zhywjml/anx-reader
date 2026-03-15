@@ -106,7 +106,7 @@ class _BgimgSelectorState extends ConsumerState<BgimgSelector> {
           onTap: onTap,
           child: Container(
             height: _itemHeight,
-            color: Theme.of(context).colorScheme.surfaceContainer,
+            color: Theme.of(context).colorScheme.surface,
             child: child,
           ),
         ),
@@ -134,7 +134,7 @@ class _BgimgSelectorState extends ConsumerState<BgimgSelector> {
         borderRadius: BorderRadius.circular(20),
         child: Container(
           height: _itemHeight,
-          color: Theme.of(context).colorScheme.surfaceContainer,
+          color: Theme.of(context).colorScheme.surface,
           child: Stack(
             clipBehavior: Clip.none,
             children: [
@@ -166,7 +166,7 @@ class _BgimgSelectorState extends ConsumerState<BgimgSelector> {
                           child: nightImage,
                         )
                       : Container(
-                          color: Theme.of(context).colorScheme.surfaceContainer,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                 ),
               ),
